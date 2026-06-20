@@ -6,7 +6,7 @@ My solutions and learning progress through Harvard's CS50P course.
 
 - [X] Week 0 - Functions, Variables
 - [x] Week 1 - Conditionals
-- [ ] Week 2 - Loops
+- [x] Week 2 - Loops
 - [ ] Week 3 - Exceptions
 - [ ] Week 4 - Libraries
 - [ ] Week 5 - Unit Test
