@@ -13,33 +13,29 @@ def is_valid(s):
     # [x] first number used cannot be a ‘0’.
     # [x] No periods, spaces, or punctuation marks are allowed.
 
-    if 2 > len(s) or len(s) > 6:
+    if not (2 <= len(s) <= 6):
         return False
-    elif len(s) == 2 and s.isalpha():
-        return True
-    elif not s[:2].isalpha() or not s.isalnum():
+
+    if not s[:2].isalpha() or not s.isalnum():
         return False
-    elif s.isalpha():
-        return True
-    else:
-        return check_num(s)
 
+    digit_started = False
 
-def check_num(plate_num):
-    numbers = []
-    digits_found = 0
-
-    for i, c in enumerate(plate_num[:-1]):
+    for c in s[2:]:
+            # Find the first digit
         if c.isdigit():
-            digits_found += 1
-            numbers.append(int(c))
+            if not digit_started:
+                digit_started = True
 
-            if plate_num[i + 1].isalpha():
-                return False
+                # Check if the first digit is 0
+                if c == "0":
+                    return False
 
-    if numbers[0] == 0 and digits_found > 0:
-        return False
-    else:
-        return True
+        # Check if letters are included after the first digit
+        elif digit_started:
+            return False
+
+    return True
+
 
 main()
