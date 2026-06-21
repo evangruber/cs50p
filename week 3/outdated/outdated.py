@@ -34,7 +34,7 @@ def main():
             try:
                 month, day, year = mid_endian_date.split("/")
 
-                if int(month) > 12 or not 1 <= int(day) <= 31:
+                if not 1 <= int(month) <= 12 or not 1 <= int(day) <= 31:
                     continue
 
                 break
