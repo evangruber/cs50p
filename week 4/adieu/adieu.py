@@ -1,6 +1,6 @@
 import inflect
 
-def main ():
+def main():
     p = inflect.engine()
 
     names = []
