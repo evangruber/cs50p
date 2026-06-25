@@ -5,12 +5,11 @@ def main():
 
     level = get_level()
 
-    question = score = 0
+    score = 0
 
-    while question < 10:
+    for _ in range(10):
 
         error = 0
-        question += 1
 
         x = generate_integer(level)
         y = generate_integer(level)
