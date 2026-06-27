@@ -9,7 +9,7 @@ My solutions and learning progress through Harvard's CS50P course.
 - [x] Week 2 - Loops
 - [x] Week 3 - Exceptions
 - [x] Week 4 - Libraries
-- [ ] Week 5 - Unit Test
+- [x] Week 5 - Unit Test
 - [ ] Week 6 - File I/O
 - [ ] Week 7 - Regular Expressions
 - [ ] Week 8 - Object-Oriented Programming
