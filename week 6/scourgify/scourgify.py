@@ -4,32 +4,42 @@ import csv
 
 def main():
     filename = validate_input()
-    student_record = {}
-    header = False
+    fieldnames = []
+    student_record = []
 
     try:
         with open(filename) as csvfile:
             reader = csv.DictReader(csvfile)
+
+            for field in reader.fieldnames:
+                if field == "name":
+                    fieldnames.extend(["first", "last"])
+                else:
+                    fieldnames.append(field)
+
             for row in reader:
                 last_name, first_name = (
-                    row[reader.fieldnames[0]].replace('\"', "").split(",")
+                    row[reader.fieldnames[0]].replace('"', "").split(",")
                 )
-                with open(sys.argv[2], "w", newline="") as new_csvfile:
-                    writer = csv.DictWriter(
-                        new_csvfile, fieldnames=["first", "last", reader.fieldnames[1]]
-                    )
-                    if not header:
-                        writer.writeheader()
-                        header = True
-                    writer.writerow(
-                        {
-                            "first": first_name.strip(),
-                            "last": last_name.strip(),
-                            f"{reader.fieldnames[1]}": row[reader.fieldnames[1]].strip(),
-                        }
-                    )
+                house = row[reader.fieldnames[1]]
+                student_record.append(
+                    {
+                        "first": first_name.strip(),
+                        "last": last_name.strip(),
+                        "house": house,
+                    }
+                )
+
     except FileNotFoundError:
         sys.exit(f"Could not read {filename}")
+
+    try:
+        with open(sys.argv[2], "x") as new_csvfile:
+            writer = csv.DictWriter(new_csvfile, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(student_record)
+    except FileExistsError:
+        pass
 
 
 def validate_input():
