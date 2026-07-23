@@ -1,11 +1,16 @@
 import sys
+from PIL import ImageOps, Image
 
 
 def main():
     filename = validate_input()
-    
+
     try:
-        ...
+        with Image.open(filename) as img:
+            with Image.open("shirt.png") as shirt:
+                img = ImageOps.fit(img, shirt.size)
+                img.paste(shirt, mask=shirt)
+                img.save(sys.argv[2])
     except FileNotFoundError:
         sys.exit("Input does not exist")
 
